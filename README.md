@@ -201,32 +201,6 @@ To make sure i'm not tripping i tried launching [the original training script](h
 <br />
 <br />
 
-Here is the difference of shapes and dtypes of objects used in [noise generation inside diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py#L1035):
-
-[Simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py):
-- `latent_model_input`: `float32`, `[2, 4, 64, 64]`
-- `t`: `int64`, `[]`
-- `encoder_hidden_states`: `float16`, `[2, 77, 768]`
-
-[Original script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py)
-- `latent_model_input`: `float16`, `[2, 4, 64, 64]`
-- `t`: `int64`, `[]`
-- `encoder_hidden_states`: `float16`, `[2, 77, 768]`
-
-<br />
-<br />
-
-Here is the difference of shapes and dtypes of objects used in [latents generation inside diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/src/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py#L993) and returned:
-
-[Simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py):
-- `prompt_embeds`: `float16`
-- returned `latents`: `float16`, `[1, 4, 64, 64]`
-
-[Original script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py):
-- `prompt_embeds`: `float16`
-- returned `latents`: `float16`, `[1, 4, 64, 64]`
-
-
 
 ### Device info:
 
