@@ -167,7 +167,7 @@ python train_text_to_image.py \
   --checkpointing_steps=2 \
   --checkpoints_total_limit=1
 ```
-and got different error:
+and got a different error:
 ```
 size of input tensor and input format are different. tensor shape: (1, 512, 512), input_format: NHWC
 ```
@@ -176,3 +176,8 @@ size of input tensor and input format are different. tensor shape: (1, 512, 512)
 Which was fixable by adding `--report_to="wandb"` arg to my training args command.
 So I added it and launched the training again. This fixed everything.
 So this was accelerate that caused this issue, now I need to find a way to run the training with accelerate...
+
+### Device info:
+
+- Linux
+- VM on Azure with x4 NVIDIA A100
