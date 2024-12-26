@@ -184,7 +184,24 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_SIMPLIFIED_WITH_M
 ```
 And the training and image generation went smoothly.
 
-If it tells you something, then in [this simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py) the `pipeline` works with `t_emb.shape=torch.Size([2, 320])`, while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) it's `t_emb.shape=torch.Size([32, 320])`
+If it tells you something, then in [this simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py) the `pipeline` works with:
+- `t_emb` shape is `[2, 320]`
+- `sample` shape is `[2, 2, 64, 64]`
+- `timestep` shape is `[]`
+
+while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) it's:
+
+- `t_emb` shape is `[32, 320]`
+- `sample` shape is `[32, 2, 32, 32]`
+- `timestep` shape is `[32]`
+
+
+
+original script:
+sample.shape=torch.Size([32, 2, 32, 32]) timestep.shape=torch.Size([32])
+
+my script:
+sample.shape=torch.Size([2, 2, 64, 64]) timestep.shape=torch.Size([])
 
 ### Device info:
 
