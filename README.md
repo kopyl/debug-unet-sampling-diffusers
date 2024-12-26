@@ -177,10 +177,14 @@ Which was fixable by adding `--report_to="wandb"` arg to my training args comman
 So I added it and launched the training again. This fixed everything.
 So this was accelerate that caused this issue, now I need to find a way to run the training with accelerate...
 
+Then I tried [implementing simple text-to-image training script which supports multi-GPU training](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py) to localize the issue.
+I ran it with
+```
+accelerate launch --mixed_precision="fp16" train-sd-15-original-repo-isolated.py
+```
+And the training and image generation went smoothly.
+
 ### Device info:
 
 - Linux
 - VM on Azure with x4 NVIDIA A100
-
-
-Then I tried implementing simple text-to-image training script which supports multi-GPU training to localize the issue
