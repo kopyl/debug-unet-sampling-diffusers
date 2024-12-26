@@ -190,7 +190,6 @@ If it tells you something, then in [this simplified script](https://github.com/k
 - `timestep` shape is `[]`
 
 while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) it's:
-
 - `t_emb` shape is `[32, 320]`
 - `sample` shape is `[32, 2, 32, 32]`
 - `timestep` shape is `[32]`
