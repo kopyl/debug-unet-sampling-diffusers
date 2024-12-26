@@ -181,3 +181,6 @@ So this was accelerate that caused this issue, now I need to find a way to run t
 
 - Linux
 - VM on Azure with x4 NVIDIA A100
+
+
+Then I tried implementing simple text-to-image training script which supports multi-GPU training to localize the issue
