@@ -112,7 +112,7 @@ log_validation(
 
 
 ### Training launching:
-
+```
 accelerate launch --mixed_precision="fp16" train_text_to_image.py \
   --pretrained_model_name_or_path=stable-diffusion-v1-5/stable-diffusion-v1-5 \
   --dataset_name=reach-vb/pokemon-blip-captions \
@@ -129,6 +129,7 @@ accelerate launch --mixed_precision="fp16" train_text_to_image.py \
   --output_dir="/trained_unet_test" \
   --checkpointing_steps=2 \
   --checkpoints_total_limit=1
+```
 
 
 ### Detailed logs:
