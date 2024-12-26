@@ -6,7 +6,7 @@ It gives me this error:
 ```
 setStorage: sizes [320, 1280], strides [1, 320], storage offset 6080, and itemsize 2 requiring a storage size of 831360 are out of bounds for storage of size 0
 ```
-[Detailed logs are here](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/detailed-logs/running-without-accelerate.log).
+[Detailed logs are here](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/e8cd7c38c840e801b419789e5832b796337ebc3f/detailed-logs/initial-training-with-accelerate.log).
 
 I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#what-i-tried-to-fix-it), but got no luck yet.
 
