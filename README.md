@@ -194,14 +194,6 @@ while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c
 - `sample` shape is `[32, 2, 32, 32]`
 - `timestep` shape is `[32]`
 
-
-
-original script:
-sample.shape=torch.Size([32, 2, 32, 32]) timestep.shape=torch.Size([32])
-
-my script:
-sample.shape=torch.Size([2, 2, 64, 64]) timestep.shape=torch.Size([])
-
 ### Device info:
 
 - Linux
