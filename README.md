@@ -8,7 +8,7 @@ setStorage: sizes [320, 1280], strides [1, 320], storage offset 6080, and itemsi
 ```
 Detailed logs are added [at the end of this README](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#detailed-logs).
 
-I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#detailed-logs), but got no luck yet.
+I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#what-i-tried-to-fix-it), but got no luck yet.
 
 ### Setup:
 
