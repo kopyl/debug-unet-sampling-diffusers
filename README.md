@@ -1,3 +1,27 @@
+### UPD: FIXED
+
+The problem was in the bad accelerate config. I just used the default one and it solved the issue.
+Forgot to share the faulty config, but here is the one that fixed the issue:
+```
+{
+  "compute_environment": "LOCAL_MACHINE",
+  "debug": false,
+  "distributed_type": "MULTI_GPU",
+  "downcast_bf16": false,
+  "enable_cpu_affinity": false,
+  "machine_rank": 0,
+  "main_training_function": "main",
+  "mixed_precision": "no",
+  "num_machines": 1,
+  "num_processes": 4,
+  "rdzv_backend": "static",
+  "same_network": false,
+  "tpu_use_cluster": false,
+  "tpu_use_sudo": false,
+  "use_cpu": false
+}
+```
+
 ### Issue description:
 
 When doing `examples/text_to_image/train_text_to_image.py` training a Unet with 2 channels, images are not generating when calling `log_validation` function.
