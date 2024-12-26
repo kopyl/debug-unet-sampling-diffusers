@@ -12,7 +12,7 @@ I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tr
 
 ### Setup:
 
-I'm doing the training with [this script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/train_text_to_image.py), which is [the original script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) but with a few [exceptions](https://github.com/kopyl/debug-unet-sampling-diffusers/pull/1/commits/e8c3fbf359924d460aa1d304b0daa3320ffb0a75):
+I'm doing the training with [this script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/dfcec07bdec57abc442bb7bc86134eb91ebe05cc/train_text_to_image.py), which is [the original script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) but with a few [exceptions](https://github.com/kopyl/debug-unet-sampling-diffusers/pull/1/commits/e8c3fbf359924d460aa1d304b0daa3320ffb0a75):
 
 <br />
 <br />
