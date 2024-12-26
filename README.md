@@ -188,3 +188,7 @@ And the training and image generation went smoothly.
 
 - Linux
 - VM on Azure with x4 NVIDIA A100
+
+Packages info:
+- accelerate==1.0.1
+- diffusers-0.33.0.dev0 . Installed with `pip install git+https://github.com/huggingface/diffusers.git` (commit # 1b202c5730631417000585e3639539cefc79cbd7)
