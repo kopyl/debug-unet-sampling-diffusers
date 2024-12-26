@@ -184,6 +184,8 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_SIMPLIFIED_WITH_M
 ```
 And the training and image generation went smoothly.
 
+If it tells you something, then in [this simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py) the `pipeline` works with `t_emb.shape=torch.Size([2, 320])`, while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) it's `t_emb.shape=torch.Size([32, 320])`
+
 ### Device info:
 
 - Linux

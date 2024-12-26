@@ -141,39 +141,38 @@ More information on all the CLI arguments and the environment are available on y
 def log_validation(vae, text_encoder, tokenizer, unet, args, accelerator, weight_dtype, epoch):
     logger.info("Running validation... ")
 
-    pipeline = StableDiffusionPipeline.from_pretrained(
-        args.pretrained_model_name_or_path,
-        vae=accelerator.unwrap_model(vae),
-        text_encoder=accelerator.unwrap_model(text_encoder),
-        tokenizer=tokenizer,
-        unet=accelerator.unwrap_model(unet),
-        safety_checker=None,
-        revision=args.revision,
-        variant=args.variant,
-        torch_dtype=weight_dtype,
-    )
-    pipeline = pipeline.to(accelerator.device)
-    pipeline.set_progress_bar_config(disable=True)
-
-    if args.enable_xformers_memory_efficient_attention:
-        pipeline.enable_xformers_memory_efficient_attention()
-
-    if args.seed is None:
-        generator = None
+    if torch.backends.mps.is_available():
+        autocast_ctx = nullcontext()
     else:
-        generator = torch.Generator(device=accelerator.device).manual_seed(args.seed)
+        autocast_ctx = torch.autocast(accelerator.device.type)
 
-    images = []
-    for i in range(len(args.validation_prompts)):
-        if torch.backends.mps.is_available():
-            autocast_ctx = nullcontext()
+    # with autocast_ctx:
+        pipeline = StableDiffusionPipeline.from_pretrained(
+            args.pretrained_model_name_or_path,
+            vae=accelerator.unwrap_model(vae),
+            text_encoder=accelerator.unwrap_model(text_encoder),
+            tokenizer=tokenizer,
+            unet=accelerator.unwrap_model(unet),
+            safety_checker=None,
+            revision=args.revision,
+            variant=args.variant,
+            torch_dtype=weight_dtype,
+        )
+        pipeline = pipeline.to(accelerator.device)
+        pipeline.set_progress_bar_config(disable=True)
+
+        if args.enable_xformers_memory_efficient_attention:
+            pipeline.enable_xformers_memory_efficient_attention()
+
+        if args.seed is None:
+            generator = None
         else:
-            autocast_ctx = torch.autocast(accelerator.device.type)
+            generator = torch.Generator(device=accelerator.device).manual_seed(args.seed)
 
-        with autocast_ctx:
+        images = []
+        for i in range(len(args.validation_prompts)):
             image = pipeline(args.validation_prompts[i], num_inference_steps=20, generator=generator).images[0]
-
-        images.append(image)
+            images.append(image)
 
     for tracker in accelerator.trackers:
         if tracker.name == "tensorboard":
