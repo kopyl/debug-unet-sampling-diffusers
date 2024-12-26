@@ -185,16 +185,16 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_SIMPLIFIED_WITH_M
 And the training and image generation went smoothly.
 
 If it tells you something, then in [this simplified script](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/edbbb8faa5cdce968009d07ceea27bfd300ea842/train_text_to_image_SIMPLIFIED_WITH_MULTI_GPU.py) (which generates images perfectly) the `pipeline` [handles time embeddings](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/src/diffusers/models/unets/unet_2d_condition.py#L1141) in following shaped:
-- `t_emb` shape is `[2, 320]`
-- `sample` shape is `[2, 2, 64, 64]`
-- `timestep` shape is `[]`
+- `t_emb` shape is `[2, 320]` [batch_size?, ?]
+- `sample` shape is `[2, 2, 64, 64]` [channels_in?, channels_out?, sample_size?, sample_size?]
+- `timestep` shape is `[]` (have no clue why it's empty)
 - `sample`'s dtype is `float32`
 
 while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) (which fails) it's:
-- `t_emb` shape is `[32, 320]`
-- `sample` shape is `[32, 2, 32, 32]`
+- `t_emb` shape is `[32, 320]` [batch_size?, ?]
+- `sample` shape is `[32, 2, 32, 32]` [channels_in?, channels_out?, sample_size?, sample_size?]
 - `timestep` shape is `[32]`
-- `sample`'s dtype is `float16`
+- `sample`'s dtype is `float16` (so the difference is in the dtype...)
 
 To make sure i'm not tripping i tried launching [the original training script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) with [JUST ONE MODIFICATION](https://github.com/kopyl/debug-unet-sampling-diffusers/pull/2/commits/a93157deab882f449c560da5cfc216fbe823ce87) – [making the validation sooner](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/train_text_to_image_WITH_JUST_LOGGING_ADDED.py#L1073). And still the same issue.
 
