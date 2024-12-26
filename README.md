@@ -6,7 +6,9 @@ It gives me this error:
 ```
 setStorage: sizes [320, 1280], strides [1, 320], storage offset 6080, and itemsize 2 requiring a storage size of 831360 are out of bounds for storage of size 0
 ```
-Detailed logs are added at the end of this README.
+Detailed logs are added [at the end of this README](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#detailed-logs).
+
+I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#detailed-logs), but got no luck yet.
 
 ### Setup:
 
