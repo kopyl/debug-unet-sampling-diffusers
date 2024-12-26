@@ -1,0 +1,29 @@
+Steps:   0%|                                                                                       | 2/10000000 [00:14<19511:47:54,  7.02s/it, lr=1e-5, step_loss=1]12/26/2024 03:37:21 - INFO - __main__ - Running validation...
+[2024-12-26 03:37:21,897] [INFO] [real_accelerator.py:203:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+ [WARNING]  On Ampere and higher architectures please use CUDA 11+
+{'image_encoder', 'requires_safety_checker'} was not found in config. Values will be initialized to default values.
+                                                                                                                                                                   {'prediction_type', 'timestep_spacing'} was not found in config. Values will be initialized to default values.                                 | 0/6 [00:00<?, ?it/s]
+Loaded scheduler as PNDMScheduler from `scheduler` subfolder of stable-diffusion-v1-5/stable-diffusion-v1-5.
+Loaded feature_extractor as CLIPImageProcessor from `feature_extractor` subfolder of stable-diffusion-v1-5/stable-diffusion-v1-5.
+Loading pipeline components...: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:00<00:00, 743.06it/s]
+You have disabled the safety checker for <class 'diffusers.pipelines.stable_diffusion.pipeline_stable_diffusion.StableDiffusionPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+Traceback (most recent call last):
+  File "train-original-script.py", line 1176, in <module>
+    main()
+  File "train-original-script.py", line 1088, in main
+    log_validation(
+  File "train-original-script.py", line 181, in log_validation
+    tracker.writer.add_images("validation", np_images, epoch, dataformats="NHWC")
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/tensorboard/writer.py", line 669, in add_images
+    image(tag, img_tensor, dataformats=dataformats), global_step, walltime
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/tensorboard/summary.py", line 572, in image
+    tensor = convert_to_HWC(tensor, dataformats)
+  File "/usr/local/lib/python3.8/dist-packages/torch/utils/tensorboard/_utils.py", line 103, in convert_to_HWC
+    assert len(tensor.shape) == len(
+AssertionError: size of input tensor and input format are different.         tensor shape: (1, 512, 512), input_format: NHWC
+Steps:   0%|                                                                                       | 2/10000000 [00:18<25652:52:33,  9.24s/it, lr=1e-5, step_loss=1]
