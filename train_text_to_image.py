@@ -609,25 +609,11 @@ def main():
             args.pretrained_model_name_or_path, subfolder="text_encoder", revision=args.revision, variant=args.variant
         )
         vae = AutoencoderKL.from_pretrained(
-            args.pretrained_model_name_or_path,
-            subfolder="vae",
-            revision=args.revision,
-            variant=args.variant,
-            in_channels=1,
-            out_channels=1,
-            latent_channels=2,
-            low_cpu_mem_usage=False,
-            ignore_mismatched_sizes=True,
+            args.pretrained_model_name_or_path, subfolder="vae", revision=args.revision, variant=args.variant
         )
 
     unet = UNet2DConditionModel.from_pretrained(
-        args.pretrained_model_name_or_path,
-        subfolder="unet",
-        revision=args.non_ema_revision,
-        in_channels=2,
-        out_channels=2,
-        low_cpu_mem_usage=False,
-        ignore_mismatched_sizes=True,
+        args.pretrained_model_name_or_path, subfolder="unet", revision=args.non_ema_revision
     )
 
     # Freeze vae and text_encoder and set unet to trainable
@@ -813,7 +799,7 @@ def main():
     )
 
     def preprocess_train(examples):
-        images = [image.convert("L") for image in examples[image_column]]
+        images = [image.convert("RGB") for image in examples[image_column]]
         examples["pixel_values"] = [train_transforms(image) for image in images]
         examples["input_ids"] = tokenize_captions(examples)
         return examples
@@ -1084,17 +1070,8 @@ def main():
                                     shutil.rmtree(removing_checkpoint)
 
                         save_path = os.path.join(args.output_dir, f"checkpoint-{global_step}")
-
-                        log_validation(
-                            vae,
-                            text_encoder,
-                            tokenizer,
-                            unet,
-                            args,
-                            accelerator,
-                            weight_dtype,
-                            global_step,
-                        )
+                        accelerator.save_state(save_path)
+                        logger.info(f"Saved state to {save_path}")
 
             logs = {"step_loss": loss.detach().item(), "lr": lr_scheduler.get_last_lr()[0]}
             progress_bar.set_postfix(**logs)
