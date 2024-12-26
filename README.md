@@ -196,7 +196,7 @@ while in [the original one](https://github.com/huggingface/diffusers/blob/1b202c
 - `timestep` shape is `[32]`
 - `sample`'s dtype is `float16`
 
-<!-- To make sure i'm not tripping i tried launching the original training script  -->
+To make sure i'm not tripping i tried launching [the original training script](https://github.com/huggingface/diffusers/blob/1b202c5730631417000585e3639539cefc79cbd7/examples/text_to_image/train_text_to_image.py) with [JUST ONE MODIFICATION](https://github.com/kopyl/debug-unet-sampling-diffusers/pull/2/commits/a93157deab882f449c560da5cfc216fbe823ce87) – [making the validation sooner](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/train_text_to_image_WITH_JUST_LOGGING_ADDED.py#L1073). And still the same issue.
 
 ### Device info:
 
