@@ -6,7 +6,7 @@ It gives me this error:
 ```
 setStorage: sizes [320, 1280], strides [1, 320], storage offset 6080, and itemsize 2 requiring a storage size of 831360 are out of bounds for storage of size 0
 ```
-[Detailed logs are here.](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/detailed-logs/running-without-accelerate.log)
+[Detailed logs are here](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/main/detailed-logs/running-without-accelerate.log).
 
 I [tried debugging it](https://github.com/kopyl/debug-unet-sampling-diffusers/tree/main?tab=readme-ov-file#what-i-tried-to-fix-it), but got no luck yet.
 
@@ -169,4 +169,4 @@ and got different error:
 ```
 size of input tensor and input format are different. tensor shape: (1, 512, 512), input_format: NHWC
 ```
-[Here is the detailed log.](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/7ccf860ce0f736829865f46bb681be8f7c047914/detailed-logs/running-without-accelerate.log).
+[Here are the detailed logs](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/7ccf860ce0f736829865f46bb681be8f7c047914/detailed-logs/running-without-accelerate.log).
