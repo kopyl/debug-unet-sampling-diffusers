@@ -170,3 +170,7 @@ and got different error:
 size of input tensor and input format are different. tensor shape: (1, 512, 512), input_format: NHWC
 ```
 [Here are the detailed logs](https://github.com/kopyl/debug-unet-sampling-diffusers/blob/7ccf860ce0f736829865f46bb681be8f7c047914/detailed-logs/running-without-accelerate.log).
+
+Which was fixable by adding `--report_to="wandb"` arg to my training args command.
+So I added it and launched the training again. This fixed everything.
+So this was accelerate that caused this issue, now I need to find a way to run the training with accelerate...
