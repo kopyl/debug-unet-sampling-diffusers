@@ -2,7 +2,9 @@
 
 When doing `examples/text_to_image/train_text_to_image.py` training a Unet with 2 channels, images are not generating when calling `log_validation` function.
 
-It gives me this error:
+The main cause is `accelerate`. Without it 
+
+I get this error:
 ```
 setStorage: sizes [320, 1280], strides [1, 320], storage offset 6080, and itemsize 2 requiring a storage size of 831360 are out of bounds for storage of size 0
 ```
